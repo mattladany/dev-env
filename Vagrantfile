@@ -7,7 +7,6 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The box to use
-#  config.vm.box = "generic/centos7"
   config.vm.box = "centos/7"
 
   # Network settings
@@ -24,15 +23,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
    end
 
+  # Install GNOME gui, and all dependencies
   config.vm.provision "shell", inline: <<-SHELL
     yum groupinstall -y "GNOME Desktop"
     systemctl set-default graphical.target
     systemctl start graphical.target
+    yum update -y
+    yum install -y git tmux curl ncurses ncurses-devel termcap-devel python36 python-devel
+    git clone https://github.com/vim/vim.git
+    cd vim
+    make -j8
+    sudo make install
+    cp src/vim /usr/bin
   SHELL
-
-  # Install dependencies
-  config.vm.provision "shell",
-    path: "scripts/dependencies.sh"
 
   # Install dotfiles configurations
   config.vm.provision "shell",
