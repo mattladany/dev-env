@@ -29,7 +29,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     systemctl set-default graphical.target
     systemctl start graphical.target
     yum update -y
-    yum install -y git tmux curl ncurses ncurses-devel termcap-devel python36 python-devel
+    yum install -y yum-utils
+#    yum groupinstall -y development
+    yum groupinstall "Development tools"
+    yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+    yum install -y git tmux curl ncurses ncurses-devel termcap-devel python36u python36u-devel python36u-pip
     git clone https://github.com/vim/vim.git
     cd vim
     make -j8
@@ -38,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   SHELL
 
   # Install dotfiles configurations
-  config.vm.provision "shell",
+  config.vm.provision "shell", privileged: false,
     path: "scripts/dotfiles.sh"
 
 end
