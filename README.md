@@ -23,5 +23,7 @@ Currently, there is only one way to use this vagrant box:
 ```vagrant up```
 
 ## To Do's
+* Fix the gradle installation.
+* Figure out how to install YouCompleteMe vim plugin on Centos.
 * Add the box to Vagrant Cloud once it is stable.
 * Test the installation on base machines other than MacOS.
