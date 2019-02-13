@@ -5,13 +5,13 @@
 VAGRANTFILE_API_VERSION = "2"
 
 $install_vim = <<-SHELL
+  cd /usr/local/src
   git clone https://github.com/vim/vim.git
   cd vim
-  ./configure --prefix=/usr/local --enable-multibyte  --with-tlib=ncurses --enable-pythoninterp --enable-rubyinterp --with-ruby-command=/usr/bin/ruby --with-features=huge
-  ./configure --enable-python3interp=yes --prefix=/usr
-  make -j8
-  sudo make install
-  cp src/vim /usr/bin
+  make distclean
+  ./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-python3interp=yes --with-python3-config-dir=/lib64/python3/config --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr/local
+  make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
+  make install
 SHELL
 
 $install_gradle = <<-SHELL
@@ -35,8 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
      vb.gui = true
      vb.name = "Development Box"
-     vb.memory = "8192"
-     vb.cpus = 8
+     vb.memory = "2048"
+     vb.cpus = 2
 
    end
 
@@ -50,7 +50,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     yum install -y yum-utils
     yum groupinstall "Development tools"
     yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-    yum install -y wget git tmux curl ncurses ncurses-devel termcap-devel python36 python36-devel python36-pip cmake gcc-c++ make mono-addins-devel java-1.8.0-openjdk java-1.8.0-openjdk-devel ruby ruby-devel code
+    yum install -y wget git tmux curl ncurses ncurses-devel termcap-devel python3 python3-devel python36 python36-devel python36-pip cmake gcc-c++ make mono-addins-devel java-1.8.0-openjdk java-1.8.0-openjdk-devel ruby ruby-devel code
+
+    # vim YouCompleteMe requirements
+    yum install -y lua lua-devel luajit luajit-devel ctags python34 python34-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
+#    ln -s /usr/bin/xsubpp /usr/share/perl5/ExtUtils/xsubpp
   SHELL
 
   config.vm.provision "vim", type: "shell", inline: $install_vim
