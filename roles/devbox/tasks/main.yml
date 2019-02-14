@@ -1,0 +1,73 @@
+---
+# tasks file for devbox
+
+- name: install GNOME Desktop
+  yum: name="@^gnome-desktop-environment" state=present
+
+# cannot seem to find how to set the defualt systemd target using ansible,
+#   so using script for now.
+- name: setup graphical target
+  script: scripts/set-graphical-target.sh
+
+- name: install ius-release
+  yum:
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+    state: present
+
+- name: install needed packages
+  yum: name={{item}} state=present
+  with_items:
+  - wget
+  - curl
+  - ncurses
+  - ncurses-devel
+  - python36
+  - python36-devel
+  - python36-pip
+  - cmake
+  - gcc-c++
+  - make
+  - mono-addins-devel
+  - java-1.8.0-openjdk
+  - java-1.8.0-openjdk-devel
+  - ruby
+  - ruby-devel
+
+- name: install packages needed for vim
+  yum: name={{item}} state=present
+  with_items:
+  - lua
+  - lua-devel
+  - luajit
+  - luajit-devel
+  - ctags
+  - python34
+  - python34-devel
+  - tcl-devel
+  - perl
+  - perl-devel
+  - perl-ExtUtils-XSpp
+  - perl-ExtUtils-CBuilder
+  - perl-ExtUtils-Embed
+
+- name: create symlink for xsubpp
+  file:
+    src: /usr/bin/xsubpp
+    dest: /usr/share/perl5/ExtUtils/xsubpp
+    state: link
+
+- name: install vim
+  script: scripts/install_vim.sh
+
+- name: create gradle directory
+  file: path=/opt/gradle state=directory
+
+- name: download and unzip gradle
+  unarchive:
+    src: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
+    dest: /opt/gradle
+    remote_src: yes
+
+- name: install dotfiles
+  script: scripts/install_dotfiles.sh
+  become_user: vagrant

@@ -40,30 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
    end
 
-  # Install GNOME gui, and all dependencies
-  config.vm.provision "dependencies", type: "shell", inline: <<-SHELL
-    yum install -y epel-release
-    yum update -y
-    yum groupinstall -y "GNOME Desktop"
-    systemctl set-default graphical.target
-    systemctl start graphical.target
-    yum install -y yum-utils
-    yum groupinstall "Development tools"
-    yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-    yum install -y wget git tmux curl ncurses ncurses-devel termcap-devel python3 python3-devel python36 python36-devel python36-pip cmake gcc-c++ make mono-addins-devel java-1.8.0-openjdk java-1.8.0-openjdk-devel ruby ruby-devel code
-
-    # vim YouCompleteMe requirements
-    yum install -y lua lua-devel luajit luajit-devel ctags python34 python34-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
-#    ln -s /usr/bin/xsubpp /usr/share/perl5/ExtUtils/xsubpp
-  SHELL
-
-  config.vm.provision "vim", type: "shell", inline: $install_vim
-
-  config.vm.provision "gradle", type: "shell", inline: $install_gradle
-
-
-  # Install dotfiles configurations
-  config.vm.provision "dotfiles", type: "shell", privileged: false,
-    path: "scripts/install_dotfiles.sh"
+  # Run the ansible playbook
+  config.vm.provision "ansible" do | ansible |
+    ansible.playbook = "devbox.yml"
+  end
 
 end
