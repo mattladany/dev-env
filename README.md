@@ -4,12 +4,13 @@
 This is the configuration of my Centos 7 VM that I want to use when developing on Centos.
 
 ## Dependencies
-* __vagrant__ - https://www.vagrantup.com
-* __VirtualBox__ - https://www.virtualbox.org/wiki/Downloads
+* __vagrant__ - see https://www.vagrantup.com
+* __VirtualBox__ - see https://www.virtualbox.org/wiki/Downloads
 * __vagrant-vbguest__ (optional, but recommended) - run ```vagrant plugin install vagrant-vbguest```
-    * This automatically installs the host's VirtualBox Guest Additions on the guest system.
+    * This automatically mounds the VirtualBox Guest Additions on the guest system.
     * Optional, but if you do not want to use it, you need to install the Guest Additions manually, and make sure you keep up to date with the newest releases of it.
     * See https://github.com/dotless-de/vagrant-vbguest for more details on this plugin.
+* __ansible__ - see https://www.ansible.com/resources/get-started
 
 ## Installation
 Currently, there is only one way to use this vagrant box:
@@ -23,7 +24,5 @@ Currently, there is only one way to use this vagrant box:
 ```vagrant up```
 
 ## To Do's
-* Fix the gradle installation.
-* Figure out how to install YouCompleteMe vim plugin on Centos.
 * Add the box to Vagrant Cloud once it is stable.
-* Test the installation on base machines other than MacOS.
+* Test the installation on host machines other than MacOS.

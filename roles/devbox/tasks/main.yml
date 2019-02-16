@@ -14,7 +14,7 @@
     name: https://centos7.iuscommunity.org/ius-release.rpm
     state: present
 
-- name: install needed packages
+- name: install wanted packages
   yum: name={{item}} state=present
   with_items:
   - wget
@@ -50,6 +50,9 @@
   - perl-ExtUtils-CBuilder
   - perl-ExtUtils-Embed
 
+- name: install package needed for tmux
+  yum: name=libevent-devel state=present
+
 - name: create symlink for xsubpp
   file:
     src: /usr/bin/xsubpp
@@ -58,6 +61,9 @@
 
 - name: install vim
   script: scripts/install_vim.sh
+
+- name: install tmux
+  script: scripts/install_tmux.sh
 
 - name: create gradle directory
   file: path=/opt/gradle state=directory
