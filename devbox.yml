@@ -1,0 +1,13 @@
+---
+
+- name: Development Environment Setup
+  hosts: all
+  remote_user: vagant
+  become: yes
+
+  roles:
+    - '{{ role_name }}'
+    - vim
+    - tmux
+    - gradle
+    - dotfiles
