@@ -3,8 +3,8 @@
 ## About
 This is the development environment that I use when developing on a VM.
 
-Currently supported boxes from Vagrant Cloud:
-* centos/7
+Currently supported operating systems from Vagrant Cloud:
+* Centos 7
 
 ## Dependencies
 * __vagrant__ - see https://www.vagrantup.com
@@ -24,7 +24,8 @@ Currently supported boxes from Vagrant Cloud:
 ```vagrant up```
 
 ## Configuration
-The default OS is Centos 7, but if you want a different box, edit the 'BOX_NAME' variable in the Vagrantfile, and replace 'centos/7' with the box of your choosing, that is listed above.
+To configure the operationg system you want to use, set the 'BOX_NAME' variable in the Vagrantfile to one of the following strings:
+* "centos/7" (default)
 
 ## To Do's
 * Add boxes to Vagrant Cloud once they are stable.

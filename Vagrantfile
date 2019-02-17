@@ -13,8 +13,6 @@ def get_ansible_role(boxname)
     "centos7"
   when "ubuntu/xenial64"
     "xenial64"
-  else
-    "unknown"
   end
 end
 
@@ -45,7 +43,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.extra_vars = {
       role_name: get_ansible_role(BOX_NAME)
     }
-
 
   end
 
