@@ -1,0 +1,14 @@
+---
+# tasks file for dotfiles
+
+- name: clone my dotfiles repository
+  git:
+    repo: https://github.com/mattladany/dotfiles.git
+    dest: /home/vagrant/dotfiles/
+  become_user: vagrant
+
+- name: install dotfiles
+  shell: "printf 'O\n' | install/bootstrap.sh"
+  args:
+    chdir: /home/vagrant/dotfiles/
+  become_user: vagrant

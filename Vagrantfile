@@ -4,27 +4,25 @@
 # Vagrantfile AIP/syntax version.
 VAGRANTFILE_API_VERSION = "2"
 
-$install_vim = <<-SHELL
-  cd /usr/local/src
-  git clone https://github.com/vim/vim.git
-  cd vim
-  make distclean
-  ./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-python3interp=yes --with-python3-config-dir=/lib64/python3/config --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr/local
-  make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
-  make install
-SHELL
+BOX_NAME = "centos/7"
+#BOX_NAME = "ubuntu/xenial64"
 
-$install_gradle = <<-SHELL
-  wget https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
-  mkdir /opt/gradle
-  unzip -d /opt/gradle gradle-5.2.1-bin.zip
-  export PATH=$PATH:/opt/gradle/gradle-5.2.1/bin
-SHELL
+def get_ansible_role(boxname)
+  case boxname
+  when "centos/7"
+    "centos7"
+  when "ubuntu/xenial64"
+    "xenial64"
+  else
+    "unknown"
+  end
+end
+
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The box to use
-  config.vm.box = "centos/7"
+  config.vm.box = BOX_NAME
 
   # Network settings
 #  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
@@ -42,7 +40,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Run the ansible playbook
   config.vm.provision "ansible" do | ansible |
+
     ansible.playbook = "devbox.yml"
+    ansible.extra_vars = {
+      role_name: get_ansible_role(BOX_NAME)
+    }
+
+
   end
 
 end
