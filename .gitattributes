@@ -1,2 +1,2 @@
 *.yml           text
-Vagrantfile     ruby
+Vagrantfile     linguist-generated=true
