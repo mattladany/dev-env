@@ -1,3 +1,2 @@
 *.yml           text
-*.* linguist-language=Java
-Vagrantfile     linguist-language=Ruby
+Vagrantfile linguist-detectable=true
