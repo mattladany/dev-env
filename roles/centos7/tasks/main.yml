@@ -1,9 +1,6 @@
 ---
 # tasks file for centos7
 
-#- name: install epel-release
-#  yum: name=epel-release state=present
-
 - name: install yum-utils
   yum: name=yum-utils state=present
 

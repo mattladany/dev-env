@@ -15,8 +15,8 @@ SHELL
 
 $xenial64_ansible_install = <<-SHELL
   apt-add-repository ppa:ansible:ansible
-  apt update
-  apt install ansible
+  apt -y update
+  apt -y install ansible
 SHELL
 
 # Gets the $X_ansible_install variable that holds a shell script to install

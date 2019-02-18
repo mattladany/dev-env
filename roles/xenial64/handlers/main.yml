@@ -1,0 +1,5 @@
+---
+# handlers file for xenial64
+
+- name: reboot
+  command: reboot
