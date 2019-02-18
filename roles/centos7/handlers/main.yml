@@ -1,2 +1,7 @@
 ---
-# handlers file for devbox
+# handlers file for centos7
+
+- name: update yum packages
+  yum:
+    name: '*'
+    state: present

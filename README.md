@@ -7,13 +7,12 @@ Currently supported operating systems from Vagrant Cloud:
 * Centos 7
 
 ## Dependencies
-* __vagrant__ - see https://www.vagrantup.com
-* __VirtualBox__ - see https://www.virtualbox.org/wiki/Downloads
+* __VirtualBox (version 6.0.4)__ - see https://www.virtualbox.org/wiki/Downloads
+* __vagrant (version 2.2.3)__ - see https://www.vagrantup.com
 * __vagrant-vbguest__ (optional, but recommended) - run ```vagrant plugin install vagrant-vbguest```
     * This automatically mounts the latest VirtualBox Guest Additions on the guest system, if it is not already mounted.
     * Optional, but if you do not want to use it, you need to install the Guest Additions manually, and make sure you keep up to date with its newest releases.
     * See https://github.com/dotless-de/vagrant-vbguest for more details on this plugin.
-* __ansible__ - see https://www.ansible.com/resources/get-started
 
 ## Installation
 ### Using the base box, and provisioning on boot:
