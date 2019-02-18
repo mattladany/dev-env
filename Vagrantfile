@@ -68,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     inline: $ansible_install
 
   # Run the ansible playbook
-  config.vm.provision "ansible" do | ansible |
+  config.vm.provision "ansible_local" do | ansible |
 
     ansible.playbook = "devbox.yml"
     ansible.extra_vars = {

@@ -1,2 +1,2 @@
 *.yml           text
-Vagrantfile linguist-detectable=true
+*.md            text
