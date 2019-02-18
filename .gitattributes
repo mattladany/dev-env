@@ -1,2 +1,2 @@
 *.yml           text
-Vagrantfile     linguist-generated=true
+Vagrantfile     linguist-language=Ruby
