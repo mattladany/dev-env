@@ -8,8 +8,28 @@ VAGRANTFILE_API_VERSION = "2"
 BOX_NAME = "centos/7"
 #BOX_NAME = "ubuntu/xenial64"
 
+$centos7_ansible_install = <<-SHELL
+  yum install -y epel-release
+  yum install -y ansible
+SHELL
+
+$xenial64_ansible_install = <<-SHELL
+  apt-add-repository ppa:ansible:ansible
+  apt update
+  apt install ansible
+SHELL
+
+def get_ansible_install
+  case BOX_NAME
+  when "centos/7"
+    $centos7_ansible_install
+  when "ubuntu/xenial64"
+    $xenial64_ansible_install
+  end
+end
+
 # Gets the name of the ansible role to use based on the BOX_NAME.
-def get_ansible_role()
+def get_ansible_role
   case BOX_NAME
   when "centos/7"
     "centos7"
@@ -18,23 +38,7 @@ def get_ansible_role()
   end
 end
 
-# Gets the name of the package manager to use based on the BOX_NAME.
-def get_package_manager()
-  case BOX_NAME
-  when "centos/7"
-    "yum"
-  when "ubuntu/xenial64"
-    "apt"
-  when "ubuntu/trusty64"
-    "apt-get"
-  end
-end
-
-
-$install_ansible = <<-SHELL
-  $1 install -y epel-release
-  $1 install -y ansible
-SHELL
+$ansible_install = get_ansible_install
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -56,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    end
 
   config.vm.provision "bootstrap-phase1", type: "shell",
-    inline: $install_ansible, :args => [get_package_manager]
+    inline: $ansible_install
 
   # Run the ansible playbook
   config.vm.provision "ansible" do | ansible |
