@@ -1,2 +1,3 @@
 *.yml           text
+*.* linguist-language=Java
 Vagrantfile     linguist-language=Ruby

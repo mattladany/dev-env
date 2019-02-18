@@ -30,5 +30,6 @@ To configure the operationg system you want to use, set the 'BOX_NAME' variable 
 
 ## To Do's
 * Add macOS as a possible OS to use.
+* Add ArchLinux as a possible OS to use.
 * Add boxes to Vagrant Cloud once they are stable.
 * Test the installation on host machines other than MacOS.
