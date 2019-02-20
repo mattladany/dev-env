@@ -27,3 +27,7 @@
     enabled: yes
     state: started
 
+- name: install vim, tmux, curl, and git
+  pacman:
+    name: ['vim', 'tmux', 'curl', 'git', 'unzip']
+    state: present

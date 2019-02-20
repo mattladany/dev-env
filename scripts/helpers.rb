@@ -19,8 +19,8 @@ SHELL
 
 # The install script for ansible on Arch Linux
 $archlinux_ansible_install = <<-SHELL
-  pacman -Syyu
-  pacman -S ansible
+  pacman -Syyu --noconfirm
+  pacman -S ansible --noconfirm
 SHELL
 
 # Gets the $X_ansible_install variable that holds a shell script to install
@@ -44,7 +44,7 @@ def get_ansible_role(boxname)
   when "ubuntu/xenial64"
     "xenial64"
   when "archlinux/archlinux"
-    "archlinux"
+    "arch"
   end
 end
 
