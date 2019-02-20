@@ -1,0 +1,29 @@
+---
+# tasks file for arch
+
+- name: update and upgrade all packages
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: install dev-tools
+  pacman:
+    name: base-devel
+    state: present
+
+- name: install KDE Plasma 5
+  pacman:
+    name: plasma
+    state: present
+
+- name: install the plasma display manager
+  pacman:
+    name: ['sddm', 'sddm-kcm']
+    state: present
+
+- name: start and enable sddm
+  systemd:
+    name: sddm
+    enabled: yes
+    state: started
+

@@ -7,7 +7,7 @@
     dest: /home/vagrant/dotfiles/
   become_user: vagrant
 
-- name: install dotfiles
+- name: install
   shell: "printf 'O\n' | install/bootstrap.sh"
   args:
     chdir: /home/vagrant/dotfiles/

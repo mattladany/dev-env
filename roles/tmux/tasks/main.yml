@@ -1,26 +1,22 @@
 ---
 # tasks file for tmux
 
-#- name: install tmux
-#  script: scripts/install_tmux.sh
-#
-
-- name: download and unzip tmux
+- name: download and unzip
   unarchive:
-    src: https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz 
-    dest: /usr/local/src 
+    src: https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz
+    dest: /usr/local/src
     remote_src: yes
 
-- name: configure tmux
+- name: configure
   shell: './configure'
   args:
     chdir: /usr/local/src/tmux-2.8
 
-- name: make tmux
+- name: make
   make:
     chdir: /usr/local/src/tmux-2.8
 
-- name: make install tmux
+- name: make install
   make:
     chdir: /usr/local/src/tmux-2.8
     target: install

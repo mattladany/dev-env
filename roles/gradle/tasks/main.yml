@@ -4,7 +4,7 @@
 - name: create gradle directory
   file: path=/opt/gradle state=directory
 
-- name: download and unzip gradle
+- name: download and unzip
   unarchive:
     src: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
     dest: /opt/gradle

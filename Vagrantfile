@@ -1,47 +1,15 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require './scripts/helpers.rb'
+
 # Vagrantfile AIP/syntax version
 VAGRANTFILE_API_VERSION = "2"
 
 # The name of the Vagrant Cloud box to use
 BOX_NAME = "centos/7"
 #BOX_NAME = "ubuntu/xenial64"
-
-$centos7_ansible_install = <<-SHELL
-  yum install -y epel-release
-  yum install -y ansible
-SHELL
-
-$xenial64_ansible_install = <<-SHELL
-  apt-add-repository ppa:ansible:ansible
-  apt -y update
-  apt -y install ansible
-SHELL
-
-# Gets the $X_ansible_install variable that holds a shell script to install
-#   ansible, depending on BOX_NAME
-def get_ansible_install
-  case BOX_NAME
-  when "centos/7"
-    $centos7_ansible_install
-  when "ubuntu/xenial64"
-    $xenial64_ansible_install
-  end
-end
-
-# Gets the name of the ansible role to use based on the BOX_NAME
-def get_ansible_role
-  case BOX_NAME
-  when "centos/7"
-    "centos7"
-  when "ubuntu/xenial64"
-    "xenial64"
-  end
-end
-
-# The shell script to run on the guest to install ansible
-$ansible_install = get_ansible_install
+#BOX_NAME = "archlinux/archlinux"
 
 # Configure the Vagrant box
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -63,16 +31,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
    end
 
-  # Install ansible
+  # Install ansible on the guest
   config.vm.provision "bootstrap-phase1", type: "shell",
-    inline: $ansible_install
+    inline: get_ansible_install(BOX_NAME)
 
   # Run the ansible playbook
-  config.vm.provision "ansible_local" do | ansible |
+  config.vm.provision "bootstrap-phase2", type: "ansible_local" do | ansible |
 
     ansible.playbook = "devbox.yml"
     ansible.extra_vars = {
-      role_name: get_ansible_role
+      role_name: get_ansible_role(BOX_NAME),
+      vim_python3_dir: get_vim_python3_dir(BOX_NAME)
     }
 
   end
