@@ -6,6 +6,7 @@ This is the development environment that I use when developing on a VM.
 Currently supported operating systems from Vagrant Cloud:
 * _Centos 7_
 * _Ubuntu 16.04_
+* _Arch Linux_
 
 ## Dependencies
 * __VirtualBox (version 6.0.4)__ - see https://www.virtualbox.org/wiki/Downloads
@@ -27,6 +28,7 @@ Currently supported operating systems from Vagrant Cloud:
 To configure the operationg system you want to use, set the 'BOX_NAME' variable in the Vagrantfile to one of the following strings:
 * "centos/7" (default)
 * "ubuntu/xenial64"
+* "archlinux/archlinux"
 
 ## To Do's
 * Add macOS as a possible OS to use.
