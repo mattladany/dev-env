@@ -6,6 +6,6 @@
 
 - name: download and unzip
   unarchive:
-    src: https://services.gradle.org/distributions/gradle-5.2.1-bin.zip
+    src: https://downloads.gradle.org/distributions/gradle-5.2.1-bin.zip
     dest: /opt/gradle
     remote_src: yes

@@ -26,8 +26,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
      vb.gui = true
      vb.name = "Development Box"
-     vb.memory = "2048"
-     vb.cpus = 2
+     vb.memory = "8192"
+     vb.cpus = 8
 
    end
 

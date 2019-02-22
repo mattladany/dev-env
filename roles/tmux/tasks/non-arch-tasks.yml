@@ -1,0 +1,22 @@
+---
+# tasks to install tmux on machines that aren't Arch Linux
+
+- name: download and unzip
+  unarchive:
+    src: https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz
+    dest: /usr/local/src
+    remote_src: yes
+
+- name: configure
+  shell: './configure'
+  args:
+    chdir: /usr/local/src/tmux-2.8
+
+- name: make
+  make:
+    chdir: /usr/local/src/tmux-2.8
+
+- name: make install
+  make:
+    chdir: /usr/local/src/tmux-2.8
+    target: install

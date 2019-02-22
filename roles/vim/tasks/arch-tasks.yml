@@ -1,0 +1,8 @@
+---
+# tasks for installing vim on Arch Linux.
+
+- name: install vim on Arch Linux
+  pacman:
+    name: vim
+    state: present
+

@@ -1,0 +1,9 @@
+---
+# tasks to install tmux on Arch Linux
+
+- name: install tmux on Arch Linux
+  pacman:
+    name: tmux
+    state: present
+  when: ansible_facts['distribution'] == "Archlinux"
+

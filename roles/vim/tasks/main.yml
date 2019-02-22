@@ -1,28 +1,8 @@
 ---
 # tasks file for vim
 
-- name: clone the vim repository
-  git:
-    repo: https://github.com/vim/vim.git
-    dest: /usr/local/src/vim
+- include: arch-tasks.yml
+  when: ansible_facts['distribution'] == "Archlinux"
 
-- name: remove vim if it was already installed
-  make:
-    chdir: /usr/local/src/vim
-    target: distclean
-
-- name: configure
-  shell: './configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes --enable-python3interp=yes --with-python3-config-dir={{ vim_python3_dir }} --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope --prefix=/usr/local'
-  args:
-    chdir: /usr/local/src/vim
-
-- name: make
-  make:
-    chdir: /usr/local/src/vim
-    params:
-      VIMRUNTIMEDIR: /usr/local/share/vim/vim81
-
-- name: install
-  make:
-    chdir: /usr/local/src/vim
-    target: install
+- include: non-arch-tasks.yml
+  when: ansible_facts['distribution'] != "Archlinux"

@@ -11,23 +11,39 @@
     name: base-devel
     state: present
 
-- name: install KDE Plasma 5
+    #- name: install kde plasma 5
+    #pacman:
+    #name: plasma
+    #state: present
+    #
+    #- name: install the plasma display manager
+    #pacman:
+    #name: ['sddm', 'sddm-kcm']
+    #state: present
+    #
+    #- name: start and enable sddm
+    #systemd:
+    #name: sddm
+    #enabled: yes
+    #state: started
+
+- name: install X Window System
   pacman:
-    name: plasma
+    name: ['xorg', 'xorg-server']
     state: present
 
-- name: install the plasma display manager
+- name: install gnome
   pacman:
-    name: ['sddm', 'sddm-kcm']
+    name: gnome
     state: present
 
-- name: start and enable sddm
+- name: start and enable gdm
   systemd:
-    name: sddm
-    enabled: yes
+    name: gdm
     state: started
+    enabled: yes
 
-- name: install vim, tmux, curl, and git
+- name: install wanted/needed packages
   pacman:
-    name: ['vim', 'tmux', 'curl', 'git', 'unzip']
+    name: ['curl', 'git', 'unzip']
     state: present
