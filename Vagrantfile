@@ -7,15 +7,19 @@ require './scripts/helpers.rb'
 VAGRANTFILE_API_VERSION = "2"
 
 # The name of the Vagrant Cloud box to use
-BOX_NAME = "centos/7"
+#BOX_NAME = "centos/7"
 #BOX_NAME = "ubuntu/xenial64"
-#BOX_NAME = "archlinux/archlinux"
+BOX_NAME = "archlinux/archlinux"
 
 # Configure the Vagrant box
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The box to use
   config.vm.box = BOX_NAME
+
+  if (BOX_NAME == "archlinux/archlinux")
+    config.vbguest.auto_update = false
+  end
 
   # Network settings
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"

@@ -11,37 +11,36 @@
     name: base-devel
     state: present
 
-    #- name: install kde plasma 5
-    #pacman:
-    #name: plasma
-    #state: present
-    #
-    #- name: install the plasma display manager
-    #pacman:
-    #name: ['sddm', 'sddm-kcm']
-    #state: present
-    #
-    #- name: start and enable sddm
-    #systemd:
-    #name: sddm
-    #enabled: yes
-    #state: started
-
-- name: install X Window System
+- name: install xorg stuff
   pacman:
-    name: ['xorg', 'xorg-server']
+    name: ['xorg-server', 'xorg-apps', 'xorg-xinit']
     state: present
 
-- name: install gnome
+- name: uninstall virtualbox-guest-utils-nox
   pacman:
-    name: gnome
+    name: virtualbox-guest-utils-nox
+    state: absent
+
+- name: install virtualbox-guest-utils
+  pacman:
+    name: virtualbox-guest-utils
+    state: latest
+
+- name: install kde plasma 5
+  pacman:
+    name: plasma
     state: present
 
-- name: start and enable gdm
+- name: install the plasma display manager
+  pacman:
+    name: ['sddm', 'sddm-kcm']
+    state: present
+
+- name: start and enable sddm
   systemd:
-    name: gdm
-    state: started
+    name: sddm
     enabled: yes
+  notify: restart
 
 - name: install wanted/needed packages
   pacman:

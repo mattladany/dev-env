@@ -30,9 +30,12 @@ To configure the operationg system you want to use, set the 'BOX_NAME' variable 
 * "ubuntu/xenial64"
 * "archlinux/archlinux"
 
+## Notes
+* __Current VirtualBox Guest Additions Bug__
+    * Currently, the VirtualBox Guest Additions has a bug where immediately after logging in, you need to log out and log back in for windowing features to work correctly. Will continue to look into this until a fix is found.
+
 ## To Do's
 * Add macOS as a possible OS to use.
-* Add ArchLinux as a possible OS to use.
 * Make the desktop environment configurable.
 * Add boxes to Vagrant Cloud once they are stable.
 * Test the installation on host machines other than MacOS.

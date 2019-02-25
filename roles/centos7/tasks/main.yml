@@ -8,11 +8,21 @@
   yum: name="@Development tools" state=present
   notify: update yum packages
 
+- name: install the X windowing system
+  yum:
+    name: "@X Window System"
+    state: present
+
+- name: install Xfce
+  yum:
+    name: "@Xfce"
+    state: present
+
 - name: install GNOME Desktop
   yum: name="@^gnome-desktop-environment" state=present
 
-#- name: install KDE
-#  command: yum groupinstall "KDE Plasma Workspaces" -y
+- name: install KDE
+  command: yum groupinstall -y "KDE Plasma Workspaces"
 
 - name: set the default run level to runlevel5 (run with GUI)
   file:

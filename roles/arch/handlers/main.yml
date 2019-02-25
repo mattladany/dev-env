@@ -1,2 +1,5 @@
 ---
 # handlers file for arch
+
+- name: restart
+  command: reboot
