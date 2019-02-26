@@ -11,9 +11,9 @@
     name: base-devel
     state: present
 
-- name: install xorg stuff
+- name: install the X11 Windowing System
   pacman:
-    name: ['xorg-server', 'xorg-apps', 'xorg-xinit']
+    name: ['xorg-server', 'xorg-apps', 'xorg-xinit', 'xorg-xrdb']
     state: present
 
 - name: uninstall virtualbox-guest-utils-nox
@@ -28,7 +28,7 @@
 
 - name: install kde plasma 5
   pacman:
-    name: plasma
+    name: ['plasma', 'kde-applications']
     state: present
 
 - name: install the plasma display manager
@@ -44,5 +44,5 @@
 
 - name: install wanted/needed packages
   pacman:
-    name: ['curl', 'git', 'unzip']
+    name: ['curl', 'git', 'unzip', 'rxvt-unicode', 'rxvt-unicode-256color', 'xterm', 'java8-openjdk', 'intellij-idea-community-edition', 'kotlin', 'ruby', 'ruby-irb', 'rubygems']
     state: present

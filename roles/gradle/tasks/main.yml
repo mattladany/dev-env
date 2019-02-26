@@ -1,11 +1,8 @@
 ---
 # tasks file for gradle
 
-- name: create gradle directory
-  file: path=/opt/gradle state=directory
+- include: arch-tasks.yml
+  when: ansible_facts['distribution'] == "Archlinux"
 
-- name: download and unzip
-  unarchive:
-    src: https://downloads.gradle.org/distributions/gradle-5.2.1-bin.zip
-    dest: /opt/gradle
-    remote_src: yes
+- include: non-arch-tasks.yml
+  when: ansible_facts['distribution'] != "Archlinux"

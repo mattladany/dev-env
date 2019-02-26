@@ -3,7 +3,7 @@
 ## About
 This is the development environment that I use when developing on a VM.
 
-Currently supported operating systems from Vagrant Cloud:
+Currently supported operating systems:
 * _Centos 7_
 * _Ubuntu 16.04_
 * _Arch Linux_
@@ -29,13 +29,16 @@ To configure the operationg system you want to use, set the 'BOX_NAME' variable 
 * "centos/7" (default)
 * "ubuntu/xenial64"
 * "archlinux/archlinux"
+For more information about these boxes, visit https://app.vagrantup.com/boxes/search.
 
 ## Notes
-* __Current VirtualBox Guest Additions Bug__
-    * Currently, the VirtualBox Guest Additions has a bug where immediately after logging in, you need to log out and log back in for windowing features to work correctly. Will continue to look into this until a fix is found.
+* __VirtualBox Guest Additions Bug__
+    * Currently, the VirtualBox Guest Additions has a bug where immediately after logging in, windowing features do not work correctly and you will have trouble clicking around once an application is opened. As a current workaround, you need to log out and log back in immediately after booting. Will continue to look into this until a fix is found.
 
 ## To Do's
 * Add macOS as a possible OS to use.
+* Continue to add wanted packages to all boxes.
 * Make the desktop environment configurable.
+* Remove the vagrant-vbguest plugin dependency, and mount the VirtualBox Guest Additions manually.
 * Add boxes to Vagrant Cloud once they are stable.
 * Test the installation on host machines other than MacOS.

@@ -1,0 +1,9 @@
+---
+# tasks file for gradle on Arch Linux
+
+- name: install gradle on Arch Linux
+  pacman:
+    name: gradle
+    state: present
+
+

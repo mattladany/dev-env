@@ -1,0 +1,11 @@
+---
+# tasks file for gradle on non-Arch systems
+
+- name: create gradle directory
+  file: path=/opt/gradle state=directory
+
+- name: download and unzip
+  unarchive:
+    src: https://downloads.gradle.org/distributions/gradle-5.2.1-bin.zip
+    dest: /opt/gradle
+    remote_src: yes

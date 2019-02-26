@@ -8,7 +8,7 @@
   become_user: vagrant
 
 - name: install
-  shell: "printf 'O\n' | install/bootstrap.sh"
+  shell: "printf 'O\n' | install/bootstrap.sh --skip-git"
   args:
     chdir: /home/vagrant/dotfiles/
   become_user: vagrant
