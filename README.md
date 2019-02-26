@@ -29,6 +29,7 @@ To configure the operationg system you want to use, set the 'BOX_NAME' variable 
 * "centos/7" (default)
 * "ubuntu/xenial64"
 * "archlinux/archlinux"
+
 For more information about these boxes, visit https://app.vagrantup.com/boxes/search.
 
 ## Notes
