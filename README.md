@@ -9,12 +9,12 @@ Currently supported operating systems:
 * _Arch Linux_
 
 ## Dependencies
-* __VirtualBox (version 6.0.4)__ - see https://www.virtualbox.org/wiki/Downloads
-* __vagrant (version 2.2.3)__ - see https://www.vagrantup.com
+* [__VirtualBox (version 6.0.4)__](https://www.virtualbox.org/wiki/Downloads)
+* [__vagrant (version 2.2.3)__](https://www.vagrantup.com) 
 * __vagrant-vbguest__ (optional, but recommended) - run ```vagrant plugin install vagrant-vbguest```
     * This automatically mounts the latest VirtualBox Guest Additions on the guest system, if it is not already mounted.
     * Optional, but if you do not want to use it, you need to install the Guest Additions manually, and make sure you keep up to date with its newest releases.
-    * See https://github.com/dotless-de/vagrant-vbguest for more details on this plugin.
+    * See the [vagrant-vbguest github repository](https://github.com/dotless-de/vagrant-vbguest) for more details on this plugin.
 
 ## Installation
 ### Using the base box, and provisioning on boot:
@@ -30,7 +30,7 @@ To configure the operationg system you want to use, set the 'BOX_NAME' variable 
 * "ubuntu/xenial64"
 * "archlinux/archlinux"
 
-For more information about these boxes, visit https://app.vagrantup.com/boxes/search.
+Visit [Vagrant Cloud](https://app.vagrantup.com/boxes/search) for more information.
 
 ## Notes
 * __VirtualBox Guest Additions Bug__
