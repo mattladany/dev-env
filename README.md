@@ -1,9 +1,16 @@
 # My Development Vagrant Box
 
-## About
-This is the development environment that I use when developing on a VM.
+This repository has two main components:
 
-Currently supported operating systems:
+### Vagrant
+* For booting a base virtual machine from Vagrant Cloud.
+
+### Ansible
+* For provisioning the machine.
+
+I use Vagrant to boot a base box from Vagrant Cloud, and provision it using the Ansible roles in this project. The roles used are dependent upon the operating system of the guest machine.
+
+### Currently supported operating systems
 * _Centos 7_
 * _Ubuntu 16.04_
 * _Arch Linux_
