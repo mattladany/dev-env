@@ -4,10 +4,9 @@
   hosts: all
   remote_user: vagant
   become: yes
-
   roles:
     - '{{ role_name }}'
-    - vim
+    - mattladany.vim
     - tmux
     - gradle
     - dotfiles

@@ -1,6 +1,9 @@
 ---
 # tasks file for tmux
 
+- name: flush handlers
+  meta: flush_handlers
+
 - include: arch-tasks.yml
   when: ansible_facts['distribution'] == "Archlinux"
 

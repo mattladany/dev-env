@@ -38,7 +38,7 @@
 
 - name: install ius-release
   yum:
-    name: https://centos7.iuscommunity.org/ius-release.rpm
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     state: present
 
 - name: install wanted packages
